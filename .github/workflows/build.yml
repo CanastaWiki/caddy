@@ -23,7 +23,7 @@ jobs:
       - name: Extract Caddy version from Dockerfile
         id: caddy_version
         run: |
-          VERSION=$(grep '^FROM caddy:alpine' Dockerfile | sed 's/FROM caddy://' | sed 's/ AS.*//')
+          VERSION=$(grep '^FROM caddy:.*-alpine' Dockerfile | tail -1 | sed 's/FROM caddy://' | sed 's/-alpine.*//')
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Log in to GHCR
